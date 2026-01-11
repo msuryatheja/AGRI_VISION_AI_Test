@@ -59,12 +59,15 @@ II) Fine-tuning last 50 layers of EfficientNetB0</br>
 5. Model Evaluation:</br>
 I)  Evaluation is performed on a separate test dataset</br>
 II) Metrics reported:</br>
-     a)Precision</br>
-     b)Recall</br>
-     c)F1-score</br>
-     d) Confusion Matrix</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;a)Precision</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;b)Recall</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;c)F1-score</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;d) Confusion Matrix</br>
 III) Predictions are thresholded at 0.5</br>
 6. Inference:</br>
 A command-line script allows prediction on a single image:</br>
 "python prediction.py --image path/to/image.jpg"</br>
  <img width="1365" height="718" alt="Screenshot 2026-01-11 193324" src="https://github.com/user-attachments/assets/db8f1246-7561-4a85-826e-eb0f5b81d1c7" />
+
+ Using EfficientNetB0 provides a strong foundation because: It is pre-trained on ImageNet, learning rich visual features like edges, textures, and shapes. Requires less data compared to training a CNN from scratch. Achieves high accuracy with fewer parameters, making it computationally efficient. This makes the model both fast to train and highly accurate, even with limited datasets. Merging Rust and Powdery into a single Diseased class: Simplifies the classification task, Reduces inter-class confusion, Improves recall for disease detection.
+This aligns with real-world agricultural use cases, where detecting disease presence is more critical than disease type. Robust Data Pipeline using tf.data The custom data pipeline: Loads images lazily, Uses parallel processing, caching, and prefetching Supports optional augmentation and shuffling,This ensures high training throughput, scalability, and reproducibility.
