@@ -32,7 +32,7 @@ IV)  Rotation, zoom, and contrast layers inside the model</br>
 I)   Base Model: EfficientNetB0 (pre-trained on ImageNet)</br>
 II)  Strategy: Transfer Learning + Fine-Tuning</br>
 III) Architecture:</br>
-     </t>a) Data augmentation layer</br>
+     &nbsp;a) Data augmentation layer</br>
      b) Frozen EfficientNetB0 feature extractor</br>
      c) Global Average Pooling</br>
      d) Batch Normalization</br>
