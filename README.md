@@ -32,13 +32,13 @@ IV)  Rotation, zoom, and contrast layers inside the model</br>
 I)   Base Model: EfficientNetB0 (pre-trained on ImageNet)</br>
 II)  Strategy: Transfer Learning + Fine-Tuning</br>
 III) Architecture:</br>
-     &nbsp;&nbsp;&nbsp;a) Data augmentation layer</br>
-     b) Frozen EfficientNetB0 feature extractor</br>
-     c) Global Average Pooling</br>
-     d) Batch Normalization</br>
-     e) Dense (256 units, ReLU)</br>
-     f) Dropout (0.5)</br>
-     g) Output layer (Sigmoid for binary classification)</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;a) Data augmentation layer</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;b) Frozen EfficientNetB0 feature extractor</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;c) Global Average Pooling</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;d) Batch Normalization</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;e) Dense (256 units, ReLU)</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;f) Dropout (0.5)</br>
+     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;g) Output layer (Sigmoid for binary classification)</br>
 4. Training Strategy:</br>
 I)   Loss Function: Binary Crossentropy</br>
 II)  Optimizer: Adam</br>
