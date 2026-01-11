@@ -6,10 +6,7 @@ from sklearn.utils.class_weight import compute_class_weight
 import numpy as np
 
 from data_pipeline import load_dataset
-
-# ===============================
-# Load Datasets
-# ===============================
+# Load Data
 train_ds = load_dataset(
     "C:\\Users\\msthe\\Downloads\\archive (1)\\Train\\Train",
     augment=True
@@ -19,20 +16,14 @@ val_ds = load_dataset(
     "C:\\Users\\msthe\\Downloads\\archive (1)\\Validation\\Validation",
     shuffle=False
 )
-
-# ===============================
 # Data Augmentation
-# ===============================
 data_augmentation = tf.keras.Sequential([
     layers.RandomFlip("horizontal"),
     layers.RandomRotation(0.1),
     layers.RandomZoom(0.1),
     layers.RandomContrast(0.1),
 ])
-
-# ===============================
 # Base Model
-# ===============================
 base_model = EfficientNetB0(
     weights="imagenet",
     include_top=False,
@@ -40,10 +31,7 @@ base_model = EfficientNetB0(
 )
 
 base_model.trainable = False  # Phase 1: feature extraction
-
-# ===============================
 # Model Architecture
-# ===============================
 inputs = layers.Input(shape=(224, 224, 3))
 x = data_augmentation(inputs)
 x = base_model(x, training=False)
@@ -54,10 +42,7 @@ x = layers.Dropout(0.5)(x)
 outputs = layers.Dense(1, activation="sigmoid")(x)
 
 model = models.Model(inputs, outputs)
-
-# ===============================
 # Compile (Phase 1)
-# ===============================
 model.compile(
     optimizer=tf.keras.optimizers.Adam(1e-4),
     loss="binary_crossentropy",
@@ -67,10 +52,7 @@ model.compile(
         tf.keras.metrics.Recall(name="recall")
     ]
 )
-
-# ===============================
 # Class Weights (Imbalance Handling)
-# ===============================
 labels = np.concatenate([y.numpy() for _, y in train_ds])
 
 class_weights = compute_class_weight(
@@ -80,19 +62,13 @@ class_weights = compute_class_weight(
 )
 
 class_weight_dict = dict(enumerate(class_weights))
-
-# ===============================
 # Callbacks
-# ===============================
 callbacks = [
     EarlyStopping(patience=5, restore_best_weights=True),
     ReduceLROnPlateau(patience=3, factor=0.2),
     ModelCheckpoint("best_model.h5", save_best_only=True)
 ]
-
-# ===============================
 # Training – Phase 1
-# ===============================
 model.fit(
     train_ds,
     validation_data=val_ds,
@@ -100,10 +76,7 @@ model.fit(
     class_weight=class_weight_dict,
     callbacks=callbacks
 )
-
-# ===============================
 # Fine-Tuning – Phase 2
-# ===============================
 base_model.trainable = True
 
 for layer in base_model.layers[:-50]:
@@ -126,8 +99,5 @@ model.fit(
     class_weight=class_weight_dict,
     callbacks=callbacks
 )
-
-# ===============================
 # Save Final Model
-# ===============================
 model.save("final_model.h5")
