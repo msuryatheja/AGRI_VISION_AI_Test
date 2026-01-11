@@ -65,5 +65,5 @@ II) Metrics reported:</br>
 III) Predictions are thresholded at 0.5</br>
 6. Inference:</br>
 A command-line script allows prediction on a single image:</br>
-prediction.py --image path/to/image.jpg"</br>
-"python <img width="1365" height="718" alt="Screenshot 2026-01-11 193324" src="https://github.com/user-attachments/assets/db8f1246-7561-4a85-826e-eb0f5b81d1c7" />
+"python prediction.py --image path/to/image.jpg"</br>
+ <img width="1365" height="718" alt="Screenshot 2026-01-11 193324" src="https://github.com/user-attachments/assets/db8f1246-7561-4a85-826e-eb0f5b81d1c7" />
